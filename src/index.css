@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1440px;
+  --breakpoint-l: 1220px;
+  --color-black: #101828;
+  --color-darkGray: #475467;
+  --color-gray: #6c717b;
+  --color-red: #e44848;
+  --color-hoverRed: #d84343;
+  --color-yelow: #ffc531;
+  --color-borderGray: #dadde1;
+  --color-bgLightGray: #f2f4f7;
+  --color-bgInputGray: #f7f7f7;
+  --color-white: #ffffff;
+  --text-base: 1rem;
+  --text-base--line-height: [24px];
+  --font-weight-base: 400;
+  --text-l: 1rem;
+  --text-l--line-height: [24px];
+  --font-weight-l: 500;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: [24px];
+  --font-weight-xl: 600;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: [32px];
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Remove number input arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
