@@ -1,31 +1,74 @@
 import * as yup from "yup";
 
-const bookingValidationSchema = yup.object().shape({
+const quizFormValidationSchema = yup.object().shape({
   name: yup
     .string()
-    .required("Name is required")
-    .min(2, "Name must be at least 2 characters")
-    .max(50, "Name must not exceed 50 characters"),
+    .required("Quiz name is required")
+    .min(3, "Quiz name must be at least 3 characters")
+    .max(100, "Quiz name cannot exceed 100 characters")
+    .trim(),
 
-  email: yup
+  description: yup
     .string()
-    .required("Email is required")
-    .matches(
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      "Please enter a valid email address",
-    ),
-  // .email("Please enter a valid email address"),
+    .required("Description is required")
+    .min(3, "Description must be at least 3 characters")
+    .max(200, "Description cannot exceed 200 characters")
+    .trim(),
 
-  bookingDate: yup
-    .date()
-    .nullable()
-    .required("Booking date is required")
-    .min(new Date(), "Booking date cannot be in the past")
-    .typeError("Please select a valid date"),
+  questions: yup
+    .array()
+    .of(
+      yup.object().shape({
+        type: yup
+          .string()
+          .oneOf(
+            ["text", "single-choice", "multiple-choice"],
+            "Invalid question type",
+          )
+          .required("Question type is required"),
 
-  comment: yup.string().max(500, "Comment must not exceed 500 characters"),
+        text: yup
+          .string()
+          .required("Question text is required")
+          .min(3, "Question text must be at least 3 characters")
+          .max(300, "Question text cannot exceed 300 characters")
+          .trim(),
+
+        options: yup
+          .array()
+          .of(
+            yup
+              .string()
+              .trim()
+              .test(
+                "not-empty",
+                "Option cannot be empty",
+                (value) => !!value?.trim(),
+              ),
+          )
+          .when("type", {
+            is: (type: string) =>
+              type === "single-choice" || type === "multiple-choice",
+            then: (schema) =>
+              schema
+                .required("Options are required for choice questions")
+                .min(2, "At least 2 options are required")
+                .test(
+                  "has-values",
+                  "Options cannot be empty",
+                  (options) =>
+                    options &&
+                    options.every(
+                      (option) => option && option.trim().length > 0,
+                    ),
+                ),
+            otherwise: (schema) => schema.nullable(),
+          }),
+      }),
+    )
+    .min(1, "At least one question is required"),
 });
 
-export type BookingFormData = yup.InferType<typeof bookingValidationSchema>;
+export default quizFormValidationSchema;
 
-export default bookingValidationSchema;
+export type QuizFormData = yup.InferType<typeof quizFormValidationSchema>;

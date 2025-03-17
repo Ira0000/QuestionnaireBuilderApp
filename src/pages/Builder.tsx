@@ -4,6 +4,10 @@ import TextArea from "@/components/ui/FormComponents/TextArea";
 import { useAppDispatch } from "@/redux/hooks";
 import { createQuestionnaire } from "@/redux/questionnaires/operations";
 import FormInput from "@/components/ui/FormComponents/FormInput";
+import { yupResolver } from "@hookform/resolvers/yup";
+import quizFormValidationSchema, {
+  QuizFormData,
+} from "@/components/forms/validationSchemaBookinForm";
 
 interface Questions {
   type: "text" | "multiple-choice" | "single-choice";
@@ -26,6 +30,8 @@ export default function Builder() {
         description: "",
         questions: [{ type: "text", text: "" }],
       },
+      resolver: yupResolver(quizFormValidationSchema),
+      mode: "onBlur",
     });
 
   // Watch for changes in the form questions
