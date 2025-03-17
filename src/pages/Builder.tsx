@@ -5,20 +5,18 @@ import { useAppDispatch } from "@/redux/hooks";
 import { createQuestionnaire } from "@/redux/questionnaires/operations";
 import FormInput from "@/components/ui/FormComponents/FormInput";
 import { yupResolver } from "@hookform/resolvers/yup";
-import quizFormValidationSchema, {
-  QuizFormData,
-} from "@/components/forms/validationSchemaBookinForm";
+import quizFormValidationSchema from "@/components/forms/validationSchemaBookinForm";
 
 interface Questions {
-  type: "text" | "multiple-choice" | "single-choice";
-  options?: string[];
+  options?: (string | undefined)[] | undefined;
   text: string;
+  type: NonNullable<"text" | "single-choice" | "multiple-choice" | undefined>;
 }
 
 interface FormData {
   name: string;
   description: string;
-  questions: Questions[];
+  questions?: Questions[] | undefined;
 }
 
 export default function Builder() {

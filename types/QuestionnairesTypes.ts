@@ -2,11 +2,11 @@ export interface Questionnaires {
   _id: string;
   name: string;
   description: string;
-  questions: Questions[];
+  questions?: Questions[] | undefined;
 }
 
 export interface Questions {
-  type: "text" | "multiple-choice" | "single-choice";
+  type: NonNullable<"text" | "single-choice" | "multiple-choice" | undefined>;
   text: string;
-  options?: string[];
+  options?: (string | undefined)[] | undefined;
 }

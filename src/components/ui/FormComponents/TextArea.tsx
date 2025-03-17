@@ -1,6 +1,16 @@
-import { cn } from "@/utils/cn";
-import React from "react";
-import { Controller } from "react-hook-form";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { ComponentProps } from "react";
+import { Control, Controller } from "react-hook-form";
+
+type TextAreaProps = ComponentProps<"textarea"> & {
+  control: Control<any>;
+  label?: string;
+  labelClassName: string;
+  name: string;
+  placeholder: string;
+  className?: string;
+};
 
 export default function TextArea({
   control,
@@ -9,14 +19,7 @@ export default function TextArea({
   className,
   label,
   labelClassName,
-}: {
-  control: any;
-  name: string;
-  placeholder?: string;
-  className?: string;
-  label?: string;
-  labelClassName?: string;
-}) {
+}: TextAreaProps) {
   return (
     <Controller
       name={name}

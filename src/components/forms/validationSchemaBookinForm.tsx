@@ -57,12 +57,9 @@ const quizFormValidationSchema = yup.object().shape({
                   "has-values",
                   "Options cannot be empty",
                   (options) =>
-                    options &&
-                    options.every(
-                      (option) => option && option.trim().length > 0,
-                    ),
+                    options && options.every((option) => !!option?.trim()),
                 ),
-            otherwise: (schema) => schema.nullable(),
+            otherwise: (schema) => schema.optional(), // Change to optional
           }),
       }),
     )
