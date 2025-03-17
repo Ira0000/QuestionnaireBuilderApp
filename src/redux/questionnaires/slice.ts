@@ -109,6 +109,7 @@ const slice = createSlice({
           state: QuestionnaireState,
           action: PayloadAction<ApiResponseQuestionnaires>,
         ) => {
+          console.log("fetchQuestionnaires.fulfilled payload:", action.payload);
           state.questionnaires.loading = false;
           state.questionnaires.error = null;
           if (state.questionnaires.page === 1) {

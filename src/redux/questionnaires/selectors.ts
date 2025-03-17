@@ -22,7 +22,7 @@ export const selectQuestionnairesPage = (state: RootState) =>
 
 // Check if there are more pages available
 export const selectQuestionnairesHasMorePages = (state: RootState) =>
-  state.questionnaires.questionnaires.hasMore;
+  state.questionnaires.questionnaires.hasNextPage;
 
 // Select sorting options (sortBy & sortOrder)
 export const selectQuestionnairesSortItems = (state: RootState) =>
