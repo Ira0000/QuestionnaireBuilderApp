@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   return (
     <div className="flex h-screen flex-col justify-center bg-[url(/public/hero_1x.avif)] bg-cover bg-center pl-2 text-bgInputGray md:pl-16">
-      <h1 className="mb-4 text-5xl leading-[48px] font-semibold md:leading-[32px]">
-        Campers of your dreams
+      <h1 className="mb-4 text-4xl leading-[48px] font-semibold md:leading-[32px]">
+        Questionnaires
+        <br /> For Every Need
       </h1>
       <p className="mb-10 text-2xl font-xl">
-        You can find everything you want in our catalog
+        Collect valuable data and feedback from your audience.
       </p>
       <Link
         to="/catalog"

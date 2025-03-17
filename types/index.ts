@@ -1,5 +1,5 @@
-export * from "./CampersResponse";
+export * from "./QuestionnairesResponse";
 
-export * from "./CampersTypes";
+export * from "./QuestionnairesTypes";
 
 export * from "./SpriteTypes";

@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useEffect, useState } from "react";
-import { fetchCampersById } from "@/redux/campers/operations";
+import { fetchCampersById } from "@/redux/questionnaires/operations";
 import {
   selectOneCamper,
   selectOneCamperLoading,
-} from "@/redux/campers/selectors";
+} from "@/redux/questionnaires/selectors";
 import { Campers } from "types/CampersTypes";
 import Icon from "@/utils/icon";
 import { countAverage } from "@/utils/counterHelpers";

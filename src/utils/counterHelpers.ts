@@ -1,4 +1,4 @@
-import { Campers, CamperUtility } from "../../types/CampersTypes";
+import { Campers, CamperUtility } from "../../types/QuestionnairesTypes";
 
 export function countAverage(camperItem: Campers): {
   reviewsCount: number;

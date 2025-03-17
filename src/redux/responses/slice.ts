@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Campers } from "../../../types/CampersTypes";
+import { Campers } from "../../../types/QuestionnairesTypes";
 
 export interface FavouritesState {
   campers: {

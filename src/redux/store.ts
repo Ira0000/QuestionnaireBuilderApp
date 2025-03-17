@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { campersSlice } from "./campers/slice";
-import { favouritesSlice, FavouritesState } from "./favourites/slice";
+import { questionnairesSlice } from "./questionnaires/slice";
+import { favouritesSlice, FavouritesState } from "./responses/slice";
 import {
   persistStore,
   persistReducer,
@@ -14,18 +14,18 @@ import {
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
-  key: "favourites",
+  key: "responses",
   storage,
 };
 
-const persistedFavouritesReducer = persistReducer<FavouritesState>(
+const persistedResponsesReducer = persistReducer<FavouritesState>(
   persistConfig,
   favouritesSlice,
 );
 export const store = configureStore({
   reducer: {
-    campers: campersSlice,
-    favourites: persistedFavouritesReducer,
+    questionnaires: questionnairesSlice,
+    responses: persistedResponsesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
