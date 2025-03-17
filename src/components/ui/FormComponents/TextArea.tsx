@@ -1,3 +1,4 @@
+import { cn } from "@/utils/cn";
 import React from "react";
 import { Controller } from "react-hook-form";
 
@@ -6,11 +7,15 @@ export default function TextArea({
   name,
   placeholder,
   className,
+  label,
+  labelClassName,
 }: {
   control: any;
   name: string;
-  placeholder: string;
+  placeholder?: string;
   className?: string;
+  label?: string;
+  labelClassName?: string;
 }) {
   return (
     <Controller
@@ -18,6 +23,13 @@ export default function TextArea({
       control={control}
       render={({ field, fieldState: { error } }) => (
         <div className="flex flex-col">
+          {label && (
+            <label
+              className={`font-poppins mb-2 text-base font-bold text-[#2f2f2f] ${labelClassName}`}
+            >
+              {label}
+            </label>
+          )}
           <textarea
             {...field}
             placeholder={placeholder}

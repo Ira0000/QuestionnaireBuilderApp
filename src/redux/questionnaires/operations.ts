@@ -1,11 +1,15 @@
-import { ApiResponseQuestionnaires } from "../../../types/QuestionnairesResponse";
+import {
+  ApiResponseQuestionnaires,
+  QuestionnaireById,
+} from "../../../types/QuestionnairesResponse";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { QuestionnaireState } from "./slice";
 import { Questionnaires } from "../../../types/QuestionnairesTypes";
 
 const BASE_URL = axios.create({
-  baseURL: "https://relaxed-phylis-iryna-l-de729a78.koyeb.app/",
+  // baseURL: "https://relaxed-phylis-iryna-l-de729a78.koyeb.app/",
+  baseURL: "http://127.0.0.1:8080/",
 });
 
 //Fetch all Questionnaires (GET)
@@ -44,12 +48,14 @@ export const fetchQuestionnaires = createAsyncThunk<
 //Fetch Questionnaire by Id (GET)
 
 export const fetchQuestionnaireById = createAsyncThunk<
-  Questionnaires,
+  QuestionnaireById,
   string,
   { rejectValue: string }
 >("questionnaires/fetchbyId", async (id, { rejectWithValue }) => {
   try {
-    const { data } = await BASE_URL.get<Questionnaires>(`questionnaires/${id}`);
+    const { data } = await BASE_URL.get<QuestionnaireById>(
+      `questionnaires/${id}`,
+    );
     return data;
   } catch (error) {
     if (error instanceof AxiosError && error.response?.data?.message) {
@@ -66,12 +72,15 @@ export const createQuestionnaire = createAsyncThunk<
   { rejectValue: string }
 >("questionnaires/create", async (newQuestionnaire, { rejectWithValue }) => {
   try {
+    console.log("Request Payload:", newQuestionnaire); // Log the payload
     const { data } = await BASE_URL.post<Questionnaires>(
       "questionnaires",
       newQuestionnaire,
     );
     return data;
   } catch (error) {
+    console.error("Axios Error:", error); // Log the full error
+
     if (error instanceof AxiosError && error.response?.data?.message) {
       return rejectWithValue(error.response.data.message);
     }

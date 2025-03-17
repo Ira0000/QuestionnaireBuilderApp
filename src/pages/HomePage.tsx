@@ -10,12 +10,20 @@ const HomePage = () => {
       <p className="mb-10 text-2xl font-xl">
         Collect valuable data and feedback from your audience.
       </p>
-      <Link
-        to="/catalog"
-        className="flex h-[56px] w-[173px] cursor-pointer items-center justify-center rounded-[200px] bg-red text-base text-white transition-colors hover:bg-hoverRed"
-      >
-        View Now
-      </Link>
+      <div className="flex flex-col gap-5">
+        <Link
+          to="/catalog"
+          className="flex h-[56px] w-[173px] cursor-pointer items-center justify-center rounded-[200px] bg-red text-base text-white transition-colors hover:bg-hoverRed"
+        >
+          View Catalog
+        </Link>
+        <Link
+          to="/builder"
+          className="flex h-[56px] w-[173px] cursor-pointer items-center justify-center rounded-[200px] bg-red text-base text-white transition-colors hover:bg-hoverRed"
+        >
+          Create New
+        </Link>
+      </div>
     </div>
   );
 };

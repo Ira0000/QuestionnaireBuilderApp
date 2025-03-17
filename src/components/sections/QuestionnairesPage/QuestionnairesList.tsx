@@ -11,6 +11,7 @@ import {
   selectQuestionnairesLoading,
 } from "@/redux/questionnaires/selectors";
 import { fetchQuestionnaires } from "@/redux/questionnaires/operations";
+import { QuestionnairesApi } from "types";
 
 export default function QuestionnairesList() {
   const dispatch = useAppDispatch();
@@ -37,15 +38,15 @@ export default function QuestionnairesList() {
       </div>
     );
 
-  console.log(list);
-
   return (
     <>
       <ul className="grid grid-cols-1 gap-3 l:grid-cols-2 lg:grid-cols-1 lg:gap-8">
         {list.map((item) => {
           return (
             <li key={item._id} className="mx-auto w-full">
-              <QuestionnaireItem questionnaireItem={item} />
+              <QuestionnaireItem
+                questionnaireItem={item as QuestionnairesApi}
+              />
             </li>
           );
         })}
